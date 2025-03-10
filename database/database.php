@@ -8,7 +8,9 @@ class Database {
     public $connect;
 
     public function __construct() {
-        $this->connect = new PDO("mysql:host=localhost;dbname=slim", "root", "");
+        $database = config('database')['database'];
+
+        $this->connect = new PDO("{$database['type']}:host={$database['host']};dbname=".$database['name'], $database['user'], $database['pass']);
     }
 
     public function run() {
