@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../dotenv.php';
+require __DIR__ . '/../loadenv.php';
 
 return [
     "database" => [
