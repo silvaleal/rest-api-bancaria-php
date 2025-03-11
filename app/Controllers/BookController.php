@@ -23,8 +23,7 @@ class BookController
     }
     public function all(Request $request, Response $response)
     {
-        $book = new BookModels();
-        $result = $book->all();
+        $result = $this->model->all();
 
         $response->getBody()->write(json_encode($result));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
@@ -32,8 +31,7 @@ class BookController
 
     public function find(Request $request, Response $response, $args)
     {
-        $book = new BookModels();
-        $result = $book->find($args['id']);
+        $result = $this->model->find($args['id']);
 
         $response->getBody()->write(json_encode($result));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
