@@ -2,6 +2,8 @@
 
 API RESTful desenvolvida com **Slim Framework 4** para gerenciamento de usuários e transferências bancárias. É necessário passar um token no header em toda requisição.
 
+**ATENÇÃO:** Esta api foi feito para estudos de headers, por causo disto, qualquer usuário ao colocar o token pode ter acesso a tudo, adicionar, remover ou ver os usuários.
+
 ## Tecnologias
 
 - PHP 8+
@@ -46,11 +48,11 @@ API RESTful desenvolvida com **Slim Framework 4** para gerenciamento de usuário
 ### Transferências
 
 
-| Método | Rota             | Descrição                            |
-| ------- | ---------------- | -------------------------------------- |
-| GET     | `/transfers`     | Lista todas as transferências         |
-| GET     | `/transfer/{id}` | Detalha uma transferência específica |
-| POST    | `/transfer/add/{value}`  | Cria uma nova transferência           |
+| Método | Rota                    | Descrição                            |
+| ------- | ----------------------- | -------------------------------------- |
+| GET     | `/transfers`            | Lista todas as transferências         |
+| GET     | `/transfer/{id}`        | Detalha uma transferência específica |
+| POST    | `/transfer/add/{value}` | Cria uma nova transferência           |
 
 ### EXEMPLO DE PYTHON
 

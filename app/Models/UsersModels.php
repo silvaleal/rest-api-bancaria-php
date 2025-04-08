@@ -51,4 +51,12 @@ class UsersModels{
         $stmt->closeCursor();
         return $result;
     }
+
+    public function checkUserByField($field, $value) {
+        $sql = "SELECT * FROM users WHERE $field = :value";
+        
+        $stmt = $this->database->connect->prepare($sql);
+        $stmt->execute(["value"=> $value]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

@@ -34,16 +34,6 @@ class TransfersModel{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function checkUserByToken($token) {
-        $sql = "SELECT users.* FROM transfers
-                INNER JOIN users ON transfers.user_id AND users.id
-                WHERE users.token = :token";
-        
-        $stmt = $this->database->connect->prepare($sql);
-        $stmt->execute(["token"=> $token]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
     public function remove($id) {
         $sql = 'DELETE FROM transfers WHERE id = :id';
 

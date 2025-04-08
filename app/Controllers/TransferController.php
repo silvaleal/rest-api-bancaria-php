@@ -19,15 +19,16 @@ class TransferController
 
     public function add(Request $request, $response, $args)
     {
-        $value = $args['value'];
         $auth = $request->getHeader('Authorization');
 
         if (empty($auth)) {
             $response->getBody()->write(json_encode(['message' => "Token inválido"]));
             return $response->withHeader('Content-Type', 'application/json')->withStatus(404);
         }
+        
+        $value = $args['value'];
         $token = explode(' ', $auth[0])[1];
-        $user = $this->transfersmodel->checkUserByToken($token);
+        $user = $this->usersmodel->checkUserByField('token', $token);
 
         if (empty($this->usersmodel->find('token', $token))) {
             $response->getBody()->write(json_encode(['message' => "Token inválido"]));
@@ -51,22 +52,27 @@ class TransferController
 
         $result = $this->transfersmodel->all();
 
-        $response->getBody()->write(json_encode($token));
+        $response->getBody()->write(json_encode($result));
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
     }
 
     public function find(Request $request, $response, $args)
     {
-        $result = $this->transfersmodel->find('id', $args['id']);
+        $token = $request->getHeader('Authorization');
 
-        if ($result) {
-            $response->getBody()->write(json_encode($result));
-            $status = 200;
-        } else {
-            $response->getBody()->write(json_encode(['message' => 'Nenhuma transferência da sua conta com este ID foi encontrada.']));
-            $status = 404;
+        if (empty($token)) {
+            $response->getBody()->write(json_encode(["message"=>"Sem token"]));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
         }
 
-        return $response->withHeader('Content-Type', 'application/json')->withStatus($status);
+        $result = $this->transfersmodel->find('id', $args['id']);
+
+        if (!$result) {
+            $response->getBody()->write(json_encode(['message' => 'Nenhuma transferência da sua conta com este ID foi encontrada.']));
+            return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
+        }
+        
+        $response->getBody()->write(json_encode($result));
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
     }
 }

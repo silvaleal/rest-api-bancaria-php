@@ -5,7 +5,7 @@ function config(string $path) {
 }
 
 function genToken() {
-    $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ@!$-%";
+    $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ@!$-%1234567890";
     $token = "";
 
     for ($i=0; $i < 25; $i++) { 
