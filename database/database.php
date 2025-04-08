@@ -8,7 +8,7 @@ class Database {
     public $connect;
 
     public function __construct() {
-        $database = config('database')['database'];
+        $database = config('config')['database'];
 
         $this->connect = new PDO("{$database['type']}:host={$database['host']};dbname=".$database['name'], $database['user'], $database['pass']);
     }

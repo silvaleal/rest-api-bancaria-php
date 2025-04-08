@@ -1,13 +1,14 @@
-# Slim Framework API Template
+# Sistema Bancário (API)
 
-Este repositório fornece um template básico para desenvolvimento de APIs utilizando o Slim Framework.
+API RESTful desenvolvida com **Slim Framework 4** para gerenciamento de usuários e transferências bancárias. É necessário passar um token no header em toda requisição.
 
-## 📌 Requisitos
+## Tecnologias
 
-* PHP 8.0 ou superior
-* Composer
+- PHP 8+
+- [Slim Framework 4](https://www.slimframework.com/)
+- Composer
 
-## 🚀 Instalação
+## Instalação
 
 1. Clone este repositório:
    ```sh
@@ -30,56 +31,37 @@ Este repositório fornece um template básico para desenvolvimento de APIs utili
    DB_PASS=""
    ```
 
-## ▶️ Uso
+## Rotas
 
-Para iniciar a API em um servidor local, execute:
+### Usuários
 
-```sh
-php -S localhost:8000 -t public
-```
 
-A API estará disponível em `http://localhost:8000`.
+| Método | Rota                | Descrição                     |
+| ------- | ------------------- | ------------------------------- |
+| GET     | `/users`            | Lista todos os usuários        |
+| GET     | `/user/{id}`        | Detalha um usuário específico |
+| POST    | `/user/add/{id}`    | Adiciona um novo usuário       |
+| POST    | `/user/remove/{id}` | Remove um usuário              |
 
-## 📌 Rotas
+### Transferências
 
-### `GET /`
 
-Retorna um JSON de boas-vindas personalizada.
+| Método | Rota             | Descrição                            |
+| ------- | ---------------- | -------------------------------------- |
+| GET     | `/transfers`     | Lista todas as transferências         |
+| GET     | `/transfer/{id}` | Detalha uma transferência específica |
+| POST    | `/transfer/add/{value}`  | Cria uma nova transferência           |
 
-#### Exemplo de resposta:
+### EXEMPLO DE PYTHON
 
-```json
-{
-  "message":"Api online"
-}
-```
-### `GET /book/{id}`
+```py
+import requests
+import json
 
-Retorna um JSON com os dados do livro.
+# Código para registrar transferência de R$10,00
+requi = requests.post('http://localhost:8000/transfer/add/10', headers={
+    'Authorization': 'Bearer myToken',
+})
 
-#### Exemplo de resposta:
-
-```json
-{
-  "id":"1",
-  "title": "a"
-}
-```
-### `GET /books`
-
-Retorna um JSON com todos os livros
-
-#### Exemplo de resposta:
-
-```json
-[
-   {
-      "id":1,
-      "title":"a"
-   },
-   {
-      "id":2,
-      "title":"b"
-   }
-]
+print(requi.json(''))
 ```
