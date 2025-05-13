@@ -14,8 +14,8 @@ API RESTful desenvolvida com **Slim Framework 4** para gerenciamento de usuário
 
 1. Clone este repositório:
    ```sh
-   git clone https://github.com/silvaleal/slim4-template
-   cd slim4-template
+   git clone https://github.com/silvaleal/rest-api-bancaria-php
+   cd rest-api-bancaria-php
    ```
 2. Instale as dependências:
    ```sh
